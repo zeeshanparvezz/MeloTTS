@@ -1,7 +1,9 @@
 import os
 import click
 from melo.api import TTS
+from nemo_text_processing.text_normalization.normalize import Normalizer
 
+normalizer = Normalizer(input_case='cased', lang='en')
     
     
 # @click.command()
@@ -73,4 +75,5 @@ if __name__ == "__main__":
     ]
     
     for i, text in enumerate(texts):
+        text = normalizer.normalize(text)
         inference(ckpt_path, text, number = i)
